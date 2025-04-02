@@ -81,37 +81,39 @@
 </div>
 
     <script>
-        $(document).ready(function(){
-            let StateData = {};
+        $(document).ready(function () {
+    let StateData = {};
 
-            
-            $.ajax({
-                url: "data.json", 
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
-                    StateData = data; 
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error loading JSON:", error);
-                }
+    // Load JSON Data
+    $.ajax({
+        url: "data.json",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            StateData = data; 
+        },
+        error: function (xhr, status, error) {
+            console.error("Error loading JSON:", error);
+        }
+    });
+
+    // ----- Change Country Event -----
+    $("#country").change(function () {
+        let country = $(this).val();
+        let stateDropdown = $("#state");
+
+        // Clear previous states
+        stateDropdown.empty().append('<option value="">Select State</option>');
+
+        
+        if (StateData && StateData[country]) {
+            $.each(StateData[country], function (index, state) {
+                stateDropdown.append('<option value="' + state.id + '">' + state.name + '</option>');
             });
+        }
+    });
+});
 
-            // -----change--country----
-            $("#country").change(function(){
-                let country = $(this).val();
-                let stateDropdown = $("#state");
-                
-                // ------Clear---previous-----states
-                stateDropdown.empty().append('<option value="">Select State</option>');
-
-                if (country && StateData[country]) {
-                    $.each(countryStateData[country], function(index, state) {
-                        stateDropdown.append('<option value="' + state.id + '">' + state.name + '</option>');
-                    });
-                }
-            });
-        });
     </script>
 
 </body>
