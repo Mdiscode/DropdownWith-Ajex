@@ -1,0 +1,18 @@
+{
+    "india": [
+        { "id": 1, "name": "Maharashtra" },
+        { "id": 2, "name": "Gujarat" },
+        { "id": 3, "name": "Delhi" }
+    ],
+    "usa": [
+        { "id": 4, "name": "California" },
+        { "id": 5, "name": "Texas" },
+        { "id": 6, "name": "Florida" }
+    ],
+    "uae":[
+        { "id":8,"name":"Abu Dhabi"},
+        { "id":9,"name":"Dubai"},
+        { "id":10,"name":"Sharjah"},
+        { "id":11,"name":"Fujairah"}
+    ]
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dependent Dropdown with Ajax</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: darkolivegreen;
+    }
+    .container{
+        width: 100vw;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .dropdown{
+        width: 39rem;
+        height: 54vh;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: cornflowerblue;
+    gap: 0.5rem;
+    }
+    label{
+        font-size: 20px;
+        color: white;
+   
+    }
+    select{
+        width: 8rem;
+    height: 2rem;
+    font-size: 16px;
+    border-radius: 2rem
+    }
+    h1{
+        color:white;
+        background-color: cornflowerblue;
+        padding: 10px 10px;
+    }
+    .state{
+        margin-top: 1rem;
+    }
+</style>
+<body >
+    
+<div class="container">
+    <h1>Dropdown values depend other dropdown values using Ajex.</h1>
+    <div class="dropdown">
+        
+        <label for="country">Select Country:</label>
+    <select id="country">
+        <option value="">Select Country</option>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="uae">UAE</option>
+    </select>
+
+    <div class="state">
+        <label  for="state">Select State:</label><br>
+    <select  id="state">
+        <option value="">Select State</option>
+    </select>
+    </div>
+    
+</div>
+
+</div>
+
+    <script>
+        $(document).ready(function(){
+            let StateData = {};
+
+            
+            $.ajax({
+                url: "data.json", 
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    StateData = data; 
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error loading JSON:", error);
+                }
+            });
+
+            // -----change--country----
+            $("#country").change(function(){
+                let country = $(this).val();
+                let stateDropdown = $("#state");
+                
+                // ------Clear---previous-----states
+                stateDropdown.empty().append('<option value="">Select State</option>');
+
+                if (country && StateData[country]) {
+                    $.each(countryStateData[country], function(index, state) {
+                        stateDropdown.append('<option value="' + state.id + '">' + state.name + '</option>');
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

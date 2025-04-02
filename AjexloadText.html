@@ -1,0 +1,70 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+<body>
+<h1>Ajex load data</h1>
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+
+</div>
+<br><br>
+<button id="loaddata" type="button" >load-Data</button>
+<div id="demo2">
+    
+</div>
+
+<script>
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("demo").innerHTML =
+    this.responseText;
+  }
+  xhttp.open("GET", "ajax_info.txt");
+  xhttp.send();
+}
+</script>
+
+<script>
+    $(document).ready(function(){
+       $('#loaddata').click(functon(){
+       $('#demo2').load('ajax_info.txt');
+       });
+    });
+</script>
+
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Data Load with jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery CDN -->
+</head>
+<body>
+    <h2>Simple Load Data with jQuery AJAX</h2>
+    <h3>Change the Content</h3>
+    
+    <div class="demo">
+        <h3>The jQuery AJAX Request</h3>
+        <button type="button" id="loadButton">Change Content</button>
+        <div id="demo"></div> <!-- Content will be loaded here -->
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+            $("#loadButton").click(function(){
+                $("#demo").load("ajax_info.txt");
+            });
+        });
+    </script>
+    
+</body>
+</html>
